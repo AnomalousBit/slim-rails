@@ -3,7 +3,7 @@
 		.col-md
 			h2
 				= fa_icon 'user', class: 'primary-color fa-margin-lg'
-				| Listing #{plural_table_name.titleize}
+				| Listing <%= plural_table_name.titleize %>
 
 	= render partial: 'shared/search', locals: { search_path: <%= plural_table_name %>_path }
 
@@ -13,7 +13,7 @@
 				thead
 					tr
 						<% attributes.each do |attribute| -%>
-									th.sortable = sortable '<%= attribute.human_name %>'
+							th.sortable = sortable '<%= attribute.human_name %>'
 						<% end -%>
 						th
 						th
