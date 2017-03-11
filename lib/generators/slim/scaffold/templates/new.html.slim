@@ -1,5 +1,14 @@
-h1 New <%= singular_table_name %>
+.container-fluid
+	.row
+		.col-md
+			h2
+				= fa_icon 'user', class: 'primary-color fa-margin-lg'
+				| New <%= singular_table_name.titleize %>
 
-== render 'form'
+	.row.margin-top-10
+		.col-md
+			== render 'form'
 
-= link_to 'Back', <%= index_helper %>_path
+	.row
+		.col-md
+			= link_to 'Back', <%= plural_table_name %>_path, class: 'btn btn-secondary'
