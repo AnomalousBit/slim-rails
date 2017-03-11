@@ -8,11 +8,11 @@
 					= @<%= singular_table_name %>.name
 	.row.margin-top-10
 		.col-md
-			<% attributes.each do |attribute| -%>
-				p
-				  | <%= attribute.human_name %>:&nbsp;
-				  strong = @<%= singular_table_name %>.<%= attribute.name %>
-			<% end -%>
+<% attributes.each do |attribute| -%>
+			p
+			  | <%= attribute.human_name %>:&nbsp;
+			  strong = @<%= singular_table_name %>.<%= attribute.name %>
+<% end -%>
 
 	.row
 		.col-md
