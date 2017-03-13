@@ -11,12 +11,12 @@
 	.row
 		.col-md-4
 <% attributes.each do |attribute| -%>
-				.form-group
-					= f.label :<%= attribute.name %>
-						| <%= attribute.name.titleize %>
-						/small.margin-left-10
-							/| example: John Smith
-					= f.<%= attribute.field_type %> :<%= attribute.name %>
+			.form-group
+				= f.label :<%= attribute.name %>
+					| <%= attribute.name.titleize %>
+					/small.margin-left-10
+						/| example: John Smith
+				= f.<%= attribute.field_type %> :<%= attribute.name %>
 <% end -%>
 			br
 
