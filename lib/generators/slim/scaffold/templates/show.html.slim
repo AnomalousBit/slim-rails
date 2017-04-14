@@ -4,17 +4,21 @@
 			h2
 				= fa_icon 'user', class: 'primary-color fa-margin-lg'
 				| <%= singular_table_name.titleize %>
-				small.primary-color.title-hint
+				small.primary-color.title-hint.hidden-md-down
 					= @<%= singular_table_name %>.name
-	.row.margin-top-10
-		.col-md
+	.row.margin-top-20
+		.col-lg-3.col-md-6.col-sm-12
 <% attributes.each do |attribute| -%>
-			p
-			  | <%= attribute.human_name %>:&nbsp;
-			  strong = @<%= singular_table_name %>.<%= attribute.name %>
+			dl.row
+			  dt.col-sm-2 <%= attribute.human_name %>:&nbsp;
+	<%- if !attribute.reference? -%>
+			  dl.col-sm-10 = @<%= singular_table_name %>.<%= attribute.name %>
+	<%- else -%>
+			  dl.col-sm-10 = @<%= singular_table_name %>.<%= attribute.name %>.name
+	<%- end -%>
 <% end -%>
 
-	.row
+	.row.margin-top-20
 		.col-md
 			= link_to 'Edit', edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: 'btn btn-primary margin-right-10'
 			= link_to 'Back', <%= plural_table_name %>_path, class: 'btn btn-secondary'

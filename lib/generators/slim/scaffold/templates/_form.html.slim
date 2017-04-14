@@ -1,6 +1,6 @@
 = form_for @<%= singular_table_name %> do |f|
 	.row
-		.col-md-6
+		.col-md-12
 			- if @<%= singular_table_name %>.errors.any?
 				#error_explanation
 					h4 = "#{pluralize(@<%= singular_table_name %>.errors.count, "error")} prohibited this <%= singular_table_name %> from being saved:"
@@ -9,18 +9,27 @@
 							li = message
 
 	.row
-		.col-md-4
+		.col-lg-8.col-md-12
 <% attributes.each do |attribute| -%>
+	<%- if !attribute.reference? -%>
 			.form-group
 				= f.label :<%= attribute.name %>
 					| <%= attribute.name.titleize %>
 					/small.margin-left-10
 						/| example: John Smith
 				= f.<%= attribute.field_type %> :<%= attribute.name %>
+	<%- else -%>
+			.form-group
+				= f.label :<%= attribute.name %>
+					| <%= attribute.name.titleize %>
+					/small.margin-left-10
+						/| example: John Smith
+				= f.collection_select(:<%= attribute.column_name %>, <%= attribute.name.camelize %>.all, :id, :name, { include_blank: true }, class: 'custom-select')
+	<%- end -%>
 <% end -%>
 			br
 
 	.row
-		.col-md-2
+		.col-lg-2.col-md-4
 			.form-group = f.submit class: 'btn-primary'
 			br

@@ -13,7 +13,11 @@
 				thead
 					tr
 <% attributes.each do |attribute| -%>
+	<%- if !attribute.reference? -%>
 						th.sortable = sortable '<%= attribute.name %>'
+	<%- else -%>
+						th.sortable = sortable '<%= attribute.name %>_name', '<%= attribute.name %>'
+	<%- end -%>
 <% end -%>
 						th
 						th
@@ -23,7 +27,11 @@
 						tr onclick='tables.row_click_redirect(event, "#{{<%= singular_table_name %>_path(<%= singular_table_name %>)}}")'
 
 <% attributes.each do |attribute| -%>
+	<%- if !attribute.reference? -%>
 							td = <%= singular_table_name %>.<%= attribute.name %>
+	<%- else -%>
+							td = <%= singular_table_name %>.<%= attribute.name %>_name
+	<%- end -%>
 <% end -%>
 
 							td 
