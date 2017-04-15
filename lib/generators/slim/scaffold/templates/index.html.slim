@@ -16,7 +16,7 @@
 	<%- if !attribute.reference? -%>
 						th.sortable = sortable '<%= attribute.name %>'
 	<%- else -%>
-						th.sortable = sortable '<%= attribute.name %>_name', '<%= attribute.name %>'
+						th.sortable = sortable '<%= attribute.name %>_name', '<%= attribute.name.titleize %>'
 	<%- end -%>
 <% end -%>
 						th
