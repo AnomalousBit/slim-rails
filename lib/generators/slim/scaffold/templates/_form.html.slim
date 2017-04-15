@@ -24,6 +24,7 @@
 					| <%= attribute.name.titleize %>
 					/small.margin-left-10
 						/| example: John Smith
+				br
 				= f.collection_select(:<%= attribute.column_name %>, <%= attribute.name.camelize %>.all, :id, :name, { include_blank: true }, class: 'custom-select')
 	<%- end -%>
 <% end -%>
