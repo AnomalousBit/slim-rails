@@ -8,13 +8,13 @@
 					= @<%= singular_table_name %>.name
 	.row.margin-top-20
 		.col-lg-3.col-md-6.col-sm-12
-<% attributes.each do |attribute| -%>
 			dl.row
-			  dt.col-sm-2 <%= attribute.human_name %>:&nbsp;
+<% attributes.each do |attribute| -%>
+				dt.col-sm-2 <%= attribute.human_name %>:&nbsp;
 	<%- if !attribute.reference? -%>
-			  dl.col-sm-10 = @<%= singular_table_name %>.<%= attribute.name %>
+				dd.col-sm-10 = @<%= singular_table_name %>.<%= attribute.name %>
 	<%- else -%>
-			  dl.col-sm-10 = @<%= singular_table_name %>.<%= attribute.name %>.name
+				dd.col-sm-10 = @<%= singular_table_name %>.<%= attribute.name %>.name
 	<%- end -%>
 <% end -%>
 
