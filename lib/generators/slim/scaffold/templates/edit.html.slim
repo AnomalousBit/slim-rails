@@ -2,7 +2,7 @@
 	.row
 		.col-md
 			h2
-				= fa_icon 'user', class: 'primary-color fa-margin-lg'
+				= fa_icon <%= singular_table_name.titleize %>.icon, class: 'primary-color fa-margin-lg'
 				| Editing <%= singular_table_name.titleize %>
 				small.primary-color.title-hint
 					= @<%= singular_table_name %>.name
