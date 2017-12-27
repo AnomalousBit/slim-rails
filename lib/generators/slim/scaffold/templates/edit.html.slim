@@ -6,10 +6,10 @@
 				| Editing <%= singular_table_name.titleize %>
 				small.primary-color.title-hint
 					= @<%= singular_table_name %>.name
-	.row.margin-top-10
+	.row.mt-1
 		.col-md
 			= render 'form'
 	.row
 		.col-md
-			= link_to 'Show', <%= singular_table_name %>_path(@<%= singular_table_name %>), class: 'btn btn-primary margin-right-10'
+			= link_to 'Show', <%= singular_table_name %>_path(@<%= singular_table_name %>), class: 'btn btn-primary mr-1'
 			= link_to 'Back', <%= plural_table_name %>_path, class: 'btn btn-secondary'

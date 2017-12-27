@@ -6,7 +6,7 @@
 				| <%= singular_table_name.titleize %>
 				small.primary-color.title-hint.hidden-md-down
 					= @<%= singular_table_name %>.name
-	.row.margin-top-20
+	.row.mt-2
 		.col-lg-3.col-md-6.col-sm-12
 			dl.row
 <% attributes.each do |attribute| -%>
@@ -18,7 +18,7 @@
 	<%- end -%>
 <% end -%>
 
-	.row.margin-top-20
+	.row.mt-2
 		.col-md
-			= link_to 'Edit', edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: 'btn btn-primary margin-right-10'
+			= link_to 'Edit', edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: 'btn btn-primary mr-1'
 			= link_to 'Back', <%= plural_table_name %>_path, class: 'btn btn-secondary'

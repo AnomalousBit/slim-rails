@@ -15,14 +15,14 @@
 			.form-group
 				= f.label :<%= attribute.name %>
 					| <%= attribute.name.titleize %>
-					/small.margin-left-10
+					/small.ml-1
 						/| example: John Smith
 				= f.<%= attribute.field_type %> :<%= attribute.name %>
 	<%- else -%>
 			.form-group
 				= f.label :<%= attribute.name %>
 					| <%= attribute.name.titleize %>
-					/small.margin-left-10
+					/small.ml-1
 						/| example: John Smith
 				br
 				= f.collection_select(:<%= attribute.column_name %>, <%= attribute.name.camelize %>.all, :id, :name, { include_blank: true }, class: 'custom-select')
