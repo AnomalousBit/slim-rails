@@ -11,14 +11,15 @@
 	.row
 		.col-lg-8.col-md-12
 <% attributes.each do |attribute| -%>
-	<%- if !attribute.reference? -%>
+	<%- if !['created_by', 'deleted_by', 'deleted_at'].include?(attribute.name) -%>
+		<%- if !attribute.reference? -%>
 			.form-group
 				= f.label :<%= attribute.name %>
 					| <%= attribute.name.titleize %>
 					/small.ml-1
 						/| example: John Smith
 				= f.<%= attribute.field_type %> :<%= attribute.name %>
-	<%- else -%>
+		<%- else -%>
 			.form-group
 				= f.label :<%= attribute.name %>
 					| <%= attribute.name.titleize %>
@@ -26,6 +27,7 @@
 						/| example: John Smith
 				br
 				= f.collection_select(:<%= attribute.column_name %>, <%= attribute.name.camelize %>.all, :id, :name, { include_blank: true }, class: 'custom-select')
+		<%- end -%>
 	<%- end -%>
 <% end -%>
 			br

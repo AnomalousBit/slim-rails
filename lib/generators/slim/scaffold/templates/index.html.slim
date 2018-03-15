@@ -13,10 +13,12 @@
 				thead
 					tr
 <% attributes.each do |attribute| -%>
-	<%- if !attribute.reference? -%>
+	<%- if !['created_by', 'deleted_by', 'deleted_at'].include?(attribute.name) -%>
+		<%- if !attribute.reference? -%>
 						th.sortable = sortable '<%= attribute.name %>'
-	<%- else -%>
+		<%- else -%>
 						th.sortable = sortable '<%= attribute.name %>_name', '<%= attribute.name.titleize %>'
+		<%- end -%>
 	<%- end -%>
 <% end -%>
 						th
