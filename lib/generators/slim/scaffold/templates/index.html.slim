@@ -29,22 +29,24 @@
 						tr onclick='tables.row_click_redirect(event, "#{{<%= singular_table_name %>_path(<%= singular_table_name %>)}}")'
 
 <% attributes.each do |attribute| -%>
-	<%- if !attribute.reference? -%>
+	<%- if !['created_by', 'deleted_by', 'deleted_at'].include?(attribute.name) -%>
+		<%- if !attribute.reference? -%>
 							td = <%= singular_table_name %>.<%= attribute.name %>
-	<%- else -%>
+		<%- else -%>
 							td = <%= singular_table_name %>.<%= attribute.name %>_name
+		<%- end -%>
 	<%- end -%>
 <% end -%>
 
-							td 
+							td
 								= link_to edit_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'btn btn-sm btn-primary' do
 									= fa_icon 'pencil', class: 'mr-2'
-									| Edit 
+									| Edit
 
 							td
 								= link_to <%= singular_table_name %>, data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-sm btn-primary'
 									= fa_icon 'times', class: 'mr-2'
-									| Delete 
+									| Delete
 
 	.row
 		.col-md
