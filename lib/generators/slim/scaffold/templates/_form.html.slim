@@ -1,6 +1,6 @@
 = form_for @<%= singular_table_name %> do |f|
 	.row
-		.col-md-12
+		.col-12
 			- if @<%= singular_table_name %>.errors.any?
 				#error_explanation
 					h4 = "#{pluralize(@<%= singular_table_name %>.errors.count, "error")} prohibited this <%= singular_table_name %> from being saved:"
@@ -9,7 +9,7 @@
 							li = message
 
 	.row
-		.col-lg-8.col-md-12
+		.col-12.col-lg-8
 <% attributes.each do |attribute| -%>
 	<%- if !['created_by', 'deleted_by', 'deleted_at'].include?(attribute.name) -%>
 		<%- if !attribute.reference? -%>
@@ -33,6 +33,6 @@
 			br
 
 	.row
-		.col-lg-2.col-md-4
+		.col-6.col-md-4.col-lg-3.col-xl-2
 			.form-group = f.submit class: 'btn-primary'
 			br

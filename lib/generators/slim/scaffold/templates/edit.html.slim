@@ -1,15 +1,18 @@
 .container-fluid
 	.row
-		.col-md
+		.col-12
 			h2
-				= icon 'fas', @icon, class: 'primary-color mr-4'
+				i.fas.text-primary.mr-4 class="fa-#{@icon}"
 				| Editing <%= singular_table_name.titleize %>
 				small.primary-color.title-hint
 					= @<%= singular_table_name %>.name
-	.row.mt-1
-		.col-md
+	.row
+		.col-12.mt-3
 			= render 'form'
 	.row
-		.col-md
-			= link_to 'Show', <%= singular_table_name %>_path(@<%= singular_table_name %>), class: 'btn btn-primary mr-1'
-			= link_to 'Back', <%= plural_table_name %>_path, class: 'btn btn-secondary'
+		.col-12.mt-3
+			= link_to <%= singular_table_name %>_path(@<%= singular_table_name %>), class: 'btn btn-primary mr-2' do
+				| Show
+			= link_to <%= plural_table_name %>_path, class: 'btn btn-secondary' do
+				i.fas.fa-chevron-left.mr-2
+				| Back

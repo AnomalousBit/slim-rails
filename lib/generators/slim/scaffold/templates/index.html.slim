@@ -1,14 +1,14 @@
 .container-fluid
 	.row
-		.col-md
+		.col-12
 			h2
-				= icon 'fas', @plural_icon, class: 'primary-color mr-4'
+				i.fas.text-primary.mr-4 class="fa-#{@plural_icon}"
 				| Listing <%= plural_table_name.titleize %>
 
 	= render partial: 'shared/search', locals: { search_path: <%= plural_table_name %>_path }
 
 	.row
-		.col-md.mt-2
+		.col-12.mt-3
 			table.table.table-hover
 				thead
 					tr
@@ -49,12 +49,12 @@
 									| Delete
 
 	.row
-		.col-md
+		.col-12
 			.pull-right.mr-2
 				= will_paginate @<%= plural_table_name %>, class: 'digg_pagination'
 
 	.row
-		.col-md
+		.col-12
 			= link_to new_<%= singular_table_name %>_path, class: 'btn btn-primary' do
-				= icon, 'fas', 'plus', class: 'mr-2'
+				= icon 'fas', 'plus', class: 'mr-2'
 				| New <%= singular_table_name.titleize %>
