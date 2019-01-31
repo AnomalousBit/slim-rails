@@ -1,8 +1,8 @@
-.container-fluid
+.container-fluid.px-4
 	.row
-		.col-12
+		.col-12.mt-3
 			h2
-				i.fas.text-primary.mr-4 class="fa-#{@icon}"
+				i.fa-fw.text-primary.mr-3 class="fa-#{@icon} #{@icon_weight || 'far'}"
 				| New <%= singular_table_name.titleize %>
 
 	.row
@@ -11,6 +11,6 @@
 
 	.row
 		.col-12.mt-3
-			= link_to <%= plural_table_name %>_path, class: 'btn btn-secondary' do
+			= link_to '#', onclick: 'window.history.back();', class: 'btn btn-outline-secondary' do
 				i.fas.fa-chevron-left.mr-2
 				| Back
