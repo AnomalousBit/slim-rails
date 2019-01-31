@@ -38,12 +38,12 @@
 	<%- end -%>
 <% end -%>
 
-							td
+							td.py-2
 								= link_to edit_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'btn btn-sm btn-primary' do
 									i.far.fa-pencil-alt.fa-fw.mr-2
 									| Edit
 
-							td
+							td.py-2
 								= link_to <%= singular_table_name %>, data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-sm btn-primary'
 									i.far.fa-times.fa-fw.mr-2
 									| Delete
