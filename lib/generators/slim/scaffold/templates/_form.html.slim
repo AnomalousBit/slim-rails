@@ -25,14 +25,16 @@
 					| <%= attribute.name.titleize %>
 					/small.ml-1
 						/| example: John Smith
-				br
 				= f.collection_select(:<%= attribute.column_name %>, <%= attribute.name.camelize %>.all, :id, :name, { include_blank: true }, class: 'custom-select')
 		<%- end -%>
 	<%- end -%>
 <% end -%>
-			br
 
 	.row
-		.col-6.col-md-4.col-lg-3.col-xl-2
-			.form-group = f.submit class: 'btn-primary'
-			br
+		.col-12.mt-3
+			button.btn.btn-primary type='submit' data-disable-with="<i class='far fa-spinner fa-spin mr-3'></i> Saving <%= singular_table_name.titleize %>..."
+				i.far.fa-save.fa-fw.mr-2
+				- if @<%= singular_table_name %>.id.present?
+					| Update <%= singular_table_name.titleize %>
+				- else
+					| Create <%= singular_table_name.titleize %>
