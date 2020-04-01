@@ -19,7 +19,7 @@
 								.fa.fad.fa-info-circle.text-primary.mr-3
 								| Search Results for: 
 								b = @search
-								= link_to students_path, class: 'btn btn-primary ml-3' do
+								= link_to <%= plural_table_name %>_path, class: 'btn btn-primary ml-3' do
 									.fa.fal.fa-times
 									| Clear Search
 				.card-body
