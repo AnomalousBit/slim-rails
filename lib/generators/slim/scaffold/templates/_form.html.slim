@@ -5,23 +5,26 @@
 			ul
 				- @<%= singular_table_name %>.errors.full_messages.each do |message|
 					li = message
-
 <% attributes.each do |attribute| -%>
 	<%- if !['created_by', 'deleted_by', 'deleted_at'].include?(attribute.name) -%>
 		<%- if !attribute.reference? -%>
-	.form-row.col-12.col-lg-8.col-xl-6.col-xxl-4
-		= f.label :<%= attribute.name %>
-			| <%= attribute.name.titleize %>
-			/small.ml-1
-				/| example: John Smith
-		= f.<%= attribute.field_type %> :<%= attribute.name %>
+
+	.form-row.mt-3
+		.col-12.col-lg-8.col-xl-6.col-xxl-4
+			= f.label :<%= attribute.name %>
+				| <%= attribute.name.titleize %>
+				/small.ml-1
+					/| example: John Smith
+			= f.<%= attribute.field_type %> :<%= attribute.name %>
 		<%- else -%>
-	.form-row.col-12.col-lg-8.col-xl-6.col-xxl-4
-		= f.label :<%= attribute.name %>
-			| <%= attribute.name.titleize %>
-			/small.ml-1
-				/| example: John Smith
-		= f.collection_select(:<%= attribute.column_name %>, <%= attribute.name.camelize %>.all, :id, :name, { include_blank: true }, class: 'custom-select')
+
+	.form-row.mt-3
+		.col-12.col-lg-8.col-xl-6.col-xxl-4
+			= f.label :<%= attribute.name %>
+				| <%= attribute.name.titleize %>
+				/small.ml-1
+					/| example: John Smith
+			= f.collection_select(:<%= attribute.column_name %>, <%= attribute.name.camelize %>.all, :id, :name, { include_blank: true }, class: 'custom-select')
 		<%- end -%>
 	<%- end -%>
 <% end -%>
