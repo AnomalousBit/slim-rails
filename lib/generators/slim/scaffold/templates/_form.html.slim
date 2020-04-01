@@ -13,14 +13,14 @@
 <% attributes.each do |attribute| -%>
 	<%- if !['created_by', 'deleted_by', 'deleted_at'].include?(attribute.name) -%>
 		<%- if !attribute.reference? -%>
-			.form-group
+			.form-row.col-12.col-lg-8.col-xl-6.col-xxl-4
 				= f.label :<%= attribute.name %>
 					| <%= attribute.name.titleize %>
 					/small.ml-1
 						/| example: John Smith
 				= f.<%= attribute.field_type %> :<%= attribute.name %>
 		<%- else -%>
-			.form-group
+			.form-row.col-12.col-lg-8.col-xl-6.col-xxl-4
 				= f.label :<%= attribute.name %>
 					| <%= attribute.name.titleize %>
 					/small.ml-1
@@ -33,7 +33,7 @@
 	.row
 		.col-12.mt-3
 			button.btn.btn-primary type='submit' data-disable-with="<i class='far fa-spinner fa-spin mr-3'></i> Saving <%= singular_table_name.titleize %>..."
-				i.far.fa-save.fa-fw.mr-2
+				.fa.far.fa-save
 				- if @<%= singular_table_name %>.id.present?
 					| Update <%= singular_table_name.titleize %>
 				- else

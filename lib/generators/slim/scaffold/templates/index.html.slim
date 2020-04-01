@@ -1,60 +1,70 @@
-.container-fluid.px-4
+.container
 	.row
-		.col-12.mt-3
-			h2
-				i.fa-fw.text-primary.mr-3 class="fa-#{@plural_icon || @icon} #{@icon_weight || 'far'}"
+		.col-12
+			.page-header
+				.fa class="fa-#{@plural_icon || @icon} #{@icon_weight || 'fal'}"
 				| Listing <%= plural_table_name.titleize %>
 
-	= render partial: 'shared/search', locals: { search_path: <%= plural_table_name %>_path }
+	.row
+		.col-12.col-xl-8.col-xxl-6
+			= render partial: 'shared/search', locals: { search_path: <%= plural_table_name %>_path, search_label: 'Search <%= plural_table_name.titleize %>' }
 
 	.row
 		.col-12.mt-3
-			table.table.table-hover
-				thead
-					tr
-<% attributes.each do |attribute| -%>
-	<%- if !['created_by', 'deleted_by', 'deleted_at'].include?(attribute.name) -%>
-		<%- if !attribute.reference? -%>
-						th.sortable = sortable '<%= attribute.name %>'
-		<%- else -%>
-						th.sortable = sortable '<%= attribute.name %>_name', '<%= attribute.name.titleize %>'
-		<%- end -%>
-	<%- end -%>
-<% end -%>
-						th
-						th
+			.card
+				- if @search.present?
+					.card-header
+						- if @search.present?
+							.title-sm
+								.fa.fad.fa-info-circle.text-primary.mr-3
+								| Search Results for: 
+								b = @search
+								= link_to students_path, class: 'btn btn-primary ml-3' do
+									.fa.fal.fa-times
+									| Clear Search
+				.card-body
+					table.table.table-hover.mt-3
+						thead
+							tr
+		<% attributes.each do |attribute| -%>
+			<%- if !['created_by', 'deleted_by', 'deleted_at'].include?(attribute.name) -%>
+				<%- if !attribute.reference? -%>
+								th.sortable = sortable '<%= attribute.name %>'
+				<%- else -%>
+								th.sortable = sortable '<%= attribute.name %>_name', '<%= attribute.name.titleize %>'
+				<%- end -%>
+			<%- end -%>
+		<% end -%>
+								th
+								th
 
-				tbody
-					- @<%= plural_table_name %>.each do |<%= singular_table_name %>|
-						tr onclick='tables.row_click_redirect(event, "#{{<%= singular_table_name %>_path(<%= singular_table_name %>)}}")'
+						tbody
+							- @<%= plural_table_name %>.each do |<%= singular_table_name %>|
+								tr onclick='tables.row_click_redirect(event, "#{{<%= singular_table_name %>_path(<%= singular_table_name %>)}}")'
 
-<% attributes.each do |attribute| -%>
-	<%- if !['created_by', 'deleted_by', 'deleted_at'].include?(attribute.name) -%>
-		<%- if !attribute.reference? -%>
-							td = <%= singular_table_name %>.<%= attribute.name %>
-		<%- else -%>
-							td = <%= singular_table_name %>.<%= attribute.name %>_name
-		<%- end -%>
-	<%- end -%>
-<% end -%>
+		<% attributes.each do |attribute| -%>
+			<%- if !['created_by', 'deleted_by', 'deleted_at'].include?(attribute.name) -%>
+				<%- if !attribute.reference? -%>
+									td = <%= singular_table_name %>.<%= attribute.name %>
+				<%- else -%>
+									td = <%= singular_table_name %>.<%= attribute.name %>_name
+				<%- end -%>
+			<%- end -%>
+		<% end -%>
 
-							td.py-2
-								= link_to edit_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'btn btn-sm btn-primary' do
-									i.far.fa-pencil-alt.fa-fw.mr-2
-									| Edit
+									td
+										= link_to edit_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'btn btn-sm btn-primary' do
+											i.far.fa-pencil-alt.fa-fw.mr-2
+											| Edit
 
-							td.py-2
-								= link_to <%= singular_table_name %>, data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-sm btn-primary'
-									i.far.fa-times.fa-fw.mr-2
-									| Delete
+									td
+										= link_to <%= singular_table_name %>, data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-sm btn-outline-danger'
+											i.far.fa-times.fa-fw.mr-2
+											| Delete
 
-	.row
-		.col-12
-			.pull-right.mr-2
-				= will_paginate @<%= plural_table_name %>, class: 'digg_pagination'
+					- pagination_html = will_paginate @<%= plural_table_name %>, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+					= render partial: 'shared/card_footer_pagination', locals: { pagination_html: pagination_html }
 
-	.row
-		.col-12
-			= link_to new_<%= singular_table_name %>_path, class: 'btn btn-primary' do
-				i.far.fa-plus.fa-fw.mr-2
-				| New <%= singular_table_name.titleize %>
+					= link_to new_<%= singular_table_name %>_path, class: 'btn btn-primary mt-3' do
+						.fa.fal.fa-plus
+						| New <%= singular_table_name.titleize %>

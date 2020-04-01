@@ -1,16 +1,15 @@
-.container-fluid.px-4
+.container
 	.row
-		.col-12.mt-3
-			h2
-				i.fa-fw.text-primary.mr-3 class="fa-#{@icon} #{@icon_weight || 'far'}"
-				| New <%= singular_table_name.titleize %>
+		.col-12
+			.page-header
+				.fa class="fa-#{@icon} #{@icon_weight || 'fal'}"
+				| Add New <%= singular_table_name.titleize %>
 
-	.row
-		.col-12.mt-3
-			== render 'form'
+		.col-12
+			.card
+				.card-body
+					== render 'form'
 
-	.row
-		.col-12.mt-3
-			= link_to '#', onclick: 'window.history.back();', class: 'btn btn-outline-secondary' do
-				i.fas.fa-chevron-left.mr-2
-				| Back
+					= link_to '#', onclick: 'window.history.back();', class: 'btn btn-outline-secondary mt-3' do
+						.fa.fal.fa-angle-left
+						| Back

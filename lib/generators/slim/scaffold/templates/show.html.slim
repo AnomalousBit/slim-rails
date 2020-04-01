@@ -1,31 +1,35 @@
-.container-fluid.px-4
+.container
 	.row
-		.col-12.mt-3
-			h2
-				i.fa-fw.text-primary.mr-3 class="fa-#{@icon} #{@icon_weight || 'far'}"
+		.col-12
+			.page-header
+				.fa class="fa-#{@icon} #{@icon_weight || 'fal'}"
 				| <%= singular_table_name.titleize %>
-				.d-block.d-md-inline-block.text-primary.mt-2.mt-md-0.ml-md-4
+				.page-item-name
 					= @<%= singular_table_name %>.name
-	.row
-		.col-12.col-md-8.col-lg-6.col-xl-4.mt-3
-			dl.row
+
+		.col-12
+			.card
+				.card-body
+					.row
+						.col-12.col-md-8.col-lg-6.col-xl-4.mt-3
+							dl.row
 <% attributes.each do |attribute| -%>
 	<%- if !['created_by', 'deleted_by', 'deleted_at'].include?(attribute.name) -%>
-				dt.col-4 <%= attribute.human_name %>
+								dt.col-4 <%= attribute.human_name %>
 		<%- if !attribute.reference? -%>
-				dd.col-8 = @<%= singular_table_name %>.<%= attribute.name %>
+								dd.col-8 = @<%= singular_table_name %>.<%= attribute.name %>
 		<%- else -%>
-				dd.col-8 = @<%= singular_table_name %>.<%= attribute.name %>.name
+								dd.col-8 = @<%= singular_table_name %>.<%= attribute.name %>.name
 		<%- end -%>
 	<%- end -%>
 <% end -%>
 
-	.row.mt-2
-		.col-12.mt-3
-			= link_to edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: 'btn btn-primary mr-2' do
-				i.fas.fa-pencil-alt.mr-2
-				| Edit
-
-			= link_to '#', onclick: 'window.history.back();', class: 'btn btn-outline-secondary' do
-				i.fas.fa-chevron-left.mr-2
-				| Back
+					.row
+						.col-12
+							.item-actions
+								= link_to edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: 'btn btn-primary mt-3 mr-3' do
+									.fa.fal.fa-pencil
+									| Edit
+								= link_to '#', onclick: 'window.history.back();', class: 'btn btn-outline-secondary mt-3' do
+									.fa.fal.fa-angle-left
+									| Back
