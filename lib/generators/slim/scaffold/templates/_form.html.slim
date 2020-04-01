@@ -1,37 +1,32 @@
 = form_for @<%= singular_table_name %> do |f|
-	.row
-		.col-12
-			- if @<%= singular_table_name %>.errors.any?
-				#error_explanation
-					h4 = "#{pluralize(@<%= singular_table_name %>.errors.count, "error")} prohibited this <%= singular_table_name %> from being saved:"
-					ul
-						- @<%= singular_table_name %>.errors.full_messages.each do |message|
-							li = message
+	- if @<%= singular_table_name %>.errors.any?
+		#error_explanation
+			h4 = "#{pluralize(@<%= singular_table_name %>.errors.count, "error")} prohibited this <%= singular_table_name %> from being saved:"
+			ul
+				- @<%= singular_table_name %>.errors.full_messages.each do |message|
+					li = message
 
-	.row
-		.col-12.col-lg-8
 <% attributes.each do |attribute| -%>
 	<%- if !['created_by', 'deleted_by', 'deleted_at'].include?(attribute.name) -%>
 		<%- if !attribute.reference? -%>
-			.form-row.col-12.col-lg-8.col-xl-6.col-xxl-4
-				= f.label :<%= attribute.name %>
-					| <%= attribute.name.titleize %>
-					/small.ml-1
-						/| example: John Smith
-				= f.<%= attribute.field_type %> :<%= attribute.name %>
+	.form-row.col-12.col-lg-8.col-xl-6.col-xxl-4
+		= f.label :<%= attribute.name %>
+			| <%= attribute.name.titleize %>
+			/small.ml-1
+				/| example: John Smith
+		= f.<%= attribute.field_type %> :<%= attribute.name %>
 		<%- else -%>
-			.form-row.col-12.col-lg-8.col-xl-6.col-xxl-4
-				= f.label :<%= attribute.name %>
-					| <%= attribute.name.titleize %>
-					/small.ml-1
-						/| example: John Smith
-				= f.collection_select(:<%= attribute.column_name %>, <%= attribute.name.camelize %>.all, :id, :name, { include_blank: true }, class: 'custom-select')
+	.form-row.col-12.col-lg-8.col-xl-6.col-xxl-4
+		= f.label :<%= attribute.name %>
+			| <%= attribute.name.titleize %>
+			/small.ml-1
+				/| example: John Smith
+		= f.collection_select(:<%= attribute.column_name %>, <%= attribute.name.camelize %>.all, :id, :name, { include_blank: true }, class: 'custom-select')
 		<%- end -%>
 	<%- end -%>
 <% end -%>
 
-	.row
-		.col-12.mt-3
+	.form-group.mt-3
 			button.btn.btn-primary type='submit' data-disable-with="<i class='far fa-spinner fa-spin mr-3'></i> Saving <%= singular_table_name.titleize %>..."
 				.fa.far.fa-save
 				- if @<%= singular_table_name %>.id.present?
