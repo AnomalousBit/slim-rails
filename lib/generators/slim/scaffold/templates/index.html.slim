@@ -26,15 +26,15 @@
 					table.table.table-hover.mt-3
 						thead
 							tr
-		<% attributes.each do |attribute| -%>
-			<%- if !['created_by', 'deleted_by', 'deleted_at'].include?(attribute.name) -%>
-				<%- if !attribute.reference? -%>
+<% attributes.each do |attribute| -%>
+	<%- if !['created_by', 'deleted_by', 'deleted_at'].include?(attribute.name) -%>
+		<%- if !attribute.reference? -%>
 								th.sortable = sortable '<%= attribute.name %>'
-				<%- else -%>
+		<%- else -%>
 								th.sortable = sortable '<%= attribute.name %>_name', '<%= attribute.name.titleize %>'
-				<%- end -%>
-			<%- end -%>
-		<% end -%>
+		<%- end -%>
+	<%- end -%>
+<% end -%>
 								th
 								th
 
@@ -42,15 +42,15 @@
 							- @<%= plural_table_name %>.each do |<%= singular_table_name %>|
 								tr onclick='tables.row_click_redirect(event, "#{{<%= singular_table_name %>_path(<%= singular_table_name %>)}}")'
 
-		<% attributes.each do |attribute| -%>
-			<%- if !['created_by', 'deleted_by', 'deleted_at'].include?(attribute.name) -%>
-				<%- if !attribute.reference? -%>
+<% attributes.each do |attribute| -%>
+	<%- if !['created_by', 'deleted_by', 'deleted_at'].include?(attribute.name) -%>
+		<%- if !attribute.reference? -%>
 									td = <%= singular_table_name %>.<%= attribute.name %>
-				<%- else -%>
+		<%- else -%>
 									td = <%= singular_table_name %>.<%= attribute.name %>_name
-				<%- end -%>
-			<%- end -%>
-		<% end -%>
+		<%- end -%>
+	<%- end -%>
+<% end -%>
 
 									td
 										= link_to edit_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'btn btn-sm btn-primary' do
